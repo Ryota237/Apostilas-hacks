@@ -1,27 +1,99 @@
 import { Home, BookOpen, DollarSign, Terminal, GraduationCap, FileText, ExternalLink } from 'lucide-react';
 import { useState } from 'react';
 
-const fundamentalSubjects = {
-  6: [
-    { name: 'Ciências, história e geografia', volume: 'Volume 1' },
-    { name: 'Língua Portuguesa', volume: 'Volume 1' },
-    { name: 'Matemática', volume: 'Volume 1' }
-  ],
-  7: [
-    { name: 'Ciências, história e geografia', volume: 'Volume 1' },
-    { name: 'Língua Portuguesa', volume: 'Volume 1' },
-    { name: 'Matemática', volume: 'Volume 1' }
-  ],
-  8: [
-    { name: 'Ciências, história e geografia', volume: 'Volume 1' },
-    { name: 'Língua Portuguesa', volume: 'Volume 1' },
-    { name: 'Matemática', volume: 'Volume 1' }
-  ],
-  9: [
-    { name: 'Ciências, história e geografia', volume: 'Volume 1' },
-    { name: 'Língua Portuguesa', volume: 'Volume 1' },
-    { name: 'Matemática', volume: 'Volume 1' }
-  ]
+interface Subject {
+  name: string;
+  volume: string;
+  url: string;
+}
+
+interface YearSubjects {
+  [bimestre: number]: Subject[];
+}
+
+interface FundamentalSubjects {
+  [year: number]: YearSubjects;
+}
+
+const fundamentalSubjects: FundamentalSubjects = {
+  6: {
+    1: [
+      { name: 'Ciências, história e geografia', volume: 'Volume 1', url: 'https://acervocmsp.educacao.sp.gov.br/128857/1071504.pdf' },
+      { name: 'Língua Portuguesa', volume: 'Volume 1', url: 'https://acervocmsp.educacao.sp.gov.br/128878/1071714.pdf' },
+      { name: 'Matemática', volume: 'Volume 1', url: 'https://acervocmsp.educacao.sp.gov.br/128874/1071692.pdf' }
+    ],
+    2: [
+      { name: 'Ciências, História e Geografia', volume: 'Volume 2', url: 'https://acervocmsp.educacao.sp.gov.br/134823/1161288.pdf' },
+      { name: 'Matemática e Português', volume: 'Volume 2', url: 'https://acervocmsp.educacao.sp.gov.br/135153/1167415.pdf' }
+    ],
+    3: [
+      { name: 'Ciências, História e Geografia', volume: 'Volume 3', url: 'https://acervocmsp.educacao.sp.gov.br/138026/1262512.pdf' },
+      { name: 'Matemática e Português', volume: 'Volume 3', url: 'https://acervocmsp.educacao.sp.gov.br/137970/1261821.pdf' }
+    ],
+    4: [
+      { name: 'Ciências, História e Geografia', volume: 'Volume 4', url: 'https://acervocmsp.educacao.sp.gov.br/146052/1369041.pdf' },
+      { name: 'Matemática e Português', volume: 'Volume 4', url: 'https://acervocmsp.educacao.sp.gov.br/143239/1339972.pdf' }
+    ]
+  },
+  7: {
+    1: [
+      { name: 'Ciências, História e Geografia', volume: 'Volume 1', url: 'https://acervocmsp.educacao.sp.gov.br/128859/1071663.pdf' },
+      { name: 'Matemática', volume: 'Volume 1', url: 'https://acervocmsp.educacao.sp.gov.br/128879/1071719.pdf' },
+      { name: 'Português', volume: 'Volume 1', url: 'https://acervocmsp.educacao.sp.gov.br/128875/1071698.pdf' }
+    ],
+    2: [
+      { name: 'Ciências, História e Geografia', volume: 'Volume 2', url: 'https://acervocmsp.educacao.sp.gov.br/134825/1161386.pdf' },
+      { name: 'Português e Matemática', volume: 'Volume 2', url: 'https://acervocmsp.educacao.sp.gov.br/135154/1167428.pdf' }
+    ],
+    3: [
+      { name: 'Ciências, História e Geografia', volume: 'Volume 3', url: 'https://acervocmsp.educacao.sp.gov.br/138028/1262518.pdf' },
+      { name: 'Português e Matemática', volume: 'Volume 3', url: 'https://acervocmsp.educacao.sp.gov.br/137972/1261834.pdf' }
+    ],
+    4: [
+      { name: 'Ciências, História e Geografia', volume: 'Volume 4', url: 'https://acervocmsp.educacao.sp.gov.br/143249/1340054.pdf' },
+      { name: 'Português e Matemática', volume: 'Volume 4', url: 'https://acervocmsp.educacao.sp.gov.br/143241/1339982.pdf' }
+    ]
+  },
+  8: {
+    1: [
+      { name: 'Ciências, História e Geografia', volume: 'Volume 1', url: 'https://acervocmsp.educacao.sp.gov.br/128871/1071664.pdf' },
+      { name: 'Matemática', volume: 'Volume 1', url: 'https://acervocmsp.educacao.sp.gov.br/128880/1071722.pdf' },
+      { name: 'Português', volume: 'Volume 1', url: 'https://acervocmsp.educacao.sp.gov.br/128876/1071703.pdf' }
+    ],
+    2: [
+      { name: 'Ciências, História e Geografia', volume: 'Volume 2', url: 'https://acervocmsp.educacao.sp.gov.br/134884/1161968.pdf' },
+      { name: 'Português e Matemática', volume: 'Volume 2', url: 'https://acervocmsp.educacao.sp.gov.br/135158/1167452.pdf' }
+    ],
+    3: [
+      { name: 'Ciências, História e Geografia', volume: 'Volume 3', url: 'https://acervocmsp.educacao.sp.gov.br/138030/1262528.pdf' },
+      { name: 'Português e Matemática', volume: 'Volume 3', url: 'https://acervocmsp.educacao.sp.gov.br/137974/1261839.pdf' }
+    ],
+    4: [
+      { name: 'Português e Matemática', volume: 'Volume 4', url: 'https://acervocmsp.educacao.sp.gov.br/143251/1340077.pdf' },
+      { name: 'Ciências, História e Geografia', volume: 'Volume 4', url: 'https://acervocmsp.educacao.sp.gov.br/143243/1339995.pdf' }
+    ]
+  },
+  9: {
+    1: [
+      { name: 'Ciências, História e Geografia', volume: 'Volume 1', url: 'https://acervocmsp.educacao.sp.gov.br/128872/1071670.pdf' },
+      { name: 'Matemática', volume: 'Volume 1', url: 'https://acervocmsp.educacao.sp.gov.br/128881/1071729.pdf' },
+      { name: 'Português', volume: 'Volume 1', url: 'https://acervocmsp.educacao.sp.gov.br/128877/1071712.pdf' }
+    ],
+    2: [
+      { name: 'Ciências, História e Geografia', volume: 'Volume 2', url: 'https://acervocmsp.educacao.sp.gov.br/134887/1161988.pdf' },
+      { name: 'Português e Matemática', volume: 'Volume 2', url: 'https://acervocmsp.educacao.sp.gov.br/135159/1167461.pdf' }
+    ],
+    3: [
+      { name: 'Ciências, História e Geografia', volume: 'Volume 3', url: 'https://acervocmsp.educacao.sp.gov.br/138032/1262543.pdf' },
+      { name: 'Português e Matemática', volume: 'Volume 3', url: 'https://acervocmsp.educacao.sp.gov.br/137976/1261848.pdf' },
+      { name: 'São Paulo em Ação - Matemática', volume: 'Volume 3', url: 'https://files.catbox.moe/b81xgi.pdf' },
+      { name: 'São Paulo em Ação - Português', volume: 'Volume 3', url: 'https://files.catbox.moe/n3g69h.pdf' }
+    ],
+    4: [
+      { name: 'Português e Matemática', volume: 'Volume 4', url: 'https://acervocmsp.educacao.sp.gov.br/143253/1340092.pdf' },
+      { name: 'Ciências, História e Geografia', volume: 'Volume 4', url: 'https://acervocmsp.educacao.sp.gov.br/143245/1340004.pdf' }
+    ]
+  }
 };
 
 const medioSubjects = {
@@ -55,9 +127,9 @@ function App() {
     }
   };
 
-  const currentSubjects = selectedLevel === 'fundamental'
-    ? fundamentalSubjects[expandedYear?.year as keyof typeof fundamentalSubjects]
-    : medioSubjects[expandedYear?.year as keyof typeof medioSubjects];
+  const currentSubjects = selectedLevel === 'fundamental' && expandedYear
+    ? fundamentalSubjects[expandedYear.year]?.[expandedYear.bimestre]
+    : undefined;
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
@@ -294,9 +366,12 @@ function App() {
                         {expandedYear?.year === year && expandedYear?.bimestre === bimestre && currentSubjects && (
                           <div className="mt-2 space-y-2 animate-slide-down">
                             {currentSubjects.map((subject, idx) => (
-                              <button
+                              <a
                                 key={idx}
-                                className="w-full p-3 bg-gradient-to-r from-red-950/50 to-black border border-red-800/40 rounded-lg hover:border-red-600/60 transition-all duration-500 hover:scale-[1.02] hover:shadow-lg hover:shadow-red-600/20 group/subject"
+                                href={subject.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full p-3 bg-gradient-to-r from-red-950/50 to-black border border-red-800/40 rounded-lg hover:border-red-600/60 transition-all duration-500 hover:scale-[1.02] hover:shadow-lg hover:shadow-red-600/20 group/subject block"
                               >
                                 <div className="flex items-center justify-between">
                                   <div className="flex items-center gap-2 flex-1">
@@ -310,7 +385,7 @@ function App() {
                                   </div>
                                   <ExternalLink className="w-3 h-3 text-gray-500 group-hover/subject:text-red-400 group-hover/subject:scale-125 transition-all duration-300" />
                                 </div>
-                              </button>
+                              </a>
                             ))}
                           </div>
                         )}
