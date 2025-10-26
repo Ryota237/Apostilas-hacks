@@ -96,22 +96,41 @@ const fundamentalSubjects: FundamentalSubjects = {
   }
 };
 
-const medioSubjects = {
-  1: [
-    { name: 'Física, Biologia, Química', volume: 'Volume 3' },
-    { name: 'Matemática e Língua Portuguesa', volume: 'Volume 3' },
-    { name: 'História e Geografia', volume: 'Volume 3' }
-  ],
-  2: [
-    { name: 'Física, Biologia, Química', volume: 'Volume 3' },
-    { name: 'Matemática e Língua Portuguesa', volume: 'Volume 3' },
-    { name: 'História e Geografia', volume: 'Volume 3' }
-  ],
-  3: [
-    { name: 'Física, Biologia, Química', volume: 'Volume 3' },
-    { name: 'Matemática e Língua Portuguesa', volume: 'Volume 3' },
-    { name: 'História e Geografia', volume: 'Volume 3' }
-  ]
+interface MedioSubjects {
+  [year: number]: YearSubjects;
+}
+
+const medioSubjects: MedioSubjects = {
+  1: {
+    1: [],
+    2: [],
+    3: [],
+    4: []
+  },
+  2: {
+    1: [],
+    2: [],
+    3: [],
+    4: []
+  },
+  3: {
+    1: [
+      { name: 'História e Física', volume: 'Volume 1', url: 'https://acervocmsp.educacao.sp.gov.br/128899/1071760.pdf' },
+      { name: 'Português e Matemática', volume: 'Volume 1', url: 'https://acervocmsp.educacao.sp.gov.br/128900/1071776.pdf' }
+    ],
+    2: [
+      { name: 'História e Física', volume: 'Volume 2', url: 'https://acervocmsp.educacao.sp.gov.br/134911/1162126.pdf' },
+      { name: 'Português e Matemática', volume: 'Volume 2', url: 'https://acervocmsp.educacao.sp.gov.br/135106/1166617.pdf' }
+    ],
+    3: [
+      { name: 'História e Física', volume: 'Volume 3', url: 'https://acervocmsp.educacao.sp.gov.br/138042/1262617.pdf' },
+      { name: 'Português e Matemática', volume: 'Volume 3', url: 'https://acervocmsp.educacao.sp.gov.br/138016/1262492.pdf' }
+    ],
+    4: [
+      { name: 'Português e Matemática', volume: 'Volume 4', url: 'https://acervocmsp.educacao.sp.gov.br/143259/1340155.pdf' },
+      { name: 'História e Física', volume: 'Volume 4', url: 'https://acervocmsp.educacao.sp.gov.br/143270/1340475.pdf' }
+    ]
+  }
 };
 
 function App() {
@@ -127,8 +146,10 @@ function App() {
     }
   };
 
-  const currentSubjects = selectedLevel === 'fundamental' && expandedYear
-    ? fundamentalSubjects[expandedYear.year]?.[expandedYear.bimestre]
+  const currentSubjects = expandedYear
+    ? (selectedLevel === 'fundamental'
+        ? fundamentalSubjects[expandedYear.year]?.[expandedYear.bimestre]
+        : medioSubjects[expandedYear.year]?.[expandedYear.bimestre])
     : undefined;
 
   return (
